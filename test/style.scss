@@ -1,0 +1,123 @@
+$size:100px;
+$color:red;
+$deg:90deg;
+$deg2:90deg;
+$deg3:90deg;
+$deg4:50deg;
+$rotate:180deg;
+$meter-size:10px;
+
+.outside{
+  position: relative;
+  width: $size;
+  height: $size;
+  background: $color;
+}
+
+.inside{
+  position: absolute;
+  width: $size /2;
+  height: $size /2;
+  background: yellow;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(-20deg);
+  border-radius: $size /2;
+}
+
+.marker{
+  position: absolute;
+  width: 10%;
+  height: 20%;
+  background: purple;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.meter{
+  position: relative;
+  width: $size /1.2;
+  height: $size /1.2;
+  background: black;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: $size /2;
+}
+
+.meterhole{
+  position: absolute;
+  width: $size /1.2 - $meter-size;
+  height: $size /1.2 - $meter-size;
+  background: $color;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: $size /2;
+}
+
+.meterholeout{
+  position: absolute;
+  width: $size /1.2 - $meter-size;
+  height: $size /1.2 - $meter-size;
+  background: rgba(0,0,0,0);
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: $size /2;
+  border: solid $meter-size /2 rgba(0,0,0,0);
+  box-shadow: 0 0 0 9px $color;
+}
+
+.pie {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: $size; height: $size;
+  left: calc((#{$size} - #{$size} /1.2) /(-2));
+  top: calc((#{$size} - #{$size} /1.2) /(-2));
+  border-radius: 50%;
+  list-style: none;
+  .slice {
+    overflow: hidden;
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%; height: 50%;
+    transform-origin: 0% 100%;
+    .slice-contents {
+      position: absolute;
+      left: -100%;
+      width: 200%; height: 200%;
+      border-radius: 50%;
+    }
+    &:nth-child(1) {
+      transform: rotate(calc(#{$deg}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2)) skewY(calc(-90deg + #{$deg}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg}));
+        background: blue;
+      }
+    }
+    &:nth-child(2) {
+      transform: rotate(calc(#{$deg2}/(-2) + #{$rotate} - (45deg) + #{$deg3} /2 + #{$deg4} /2)) skewY(calc(-90deg + #{$deg2}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg2}));
+        background: green;
+      }
+    }
+    &:nth-child(3) {
+      transform: rotate(calc(#{$deg3}/(-2) + #{$rotate} - (90deg) + #{$deg4} /2)) skewY(calc(-90deg + #{$deg3}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg3}));
+        background: purple;
+      }
+    }
+    &:nth-child(4) {
+      transform: rotate(calc(#{$deg4}/(-2) + #{$rotate} - (135deg))) skewY(calc(-90deg + #{$deg4}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg4}));
+        background: gray;
+      }
+    }
+  }
+}
