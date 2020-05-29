@@ -8,9 +8,24 @@
 </head>
 <body>
   <div class="tsumami" id="tsumami"></div>
+  nomal:<span id="nomal"></span>
+  <br>
+  round:<span id="round"></span>
   <script>
-    var tsumami = new Tsumami();
-    console.log(tsumami.size);
+    var tsumamiValue = (()=>{
+      var val = Object.create(null);
+      var memValue = 0;
+      Object.defineProperty(val, 'value', {
+        set: (value)=>{
+          //ここに処理を書く
+          document.getElementById("nomal").innerHTML = value;
+          document.getElementById("round").innerHTML = Math.round(value);
+          memValue = value;
+        }
+      });
+      return val;
+    })();
+    var tsumami = new Tsumami({obj: tsumamiValue});
   </script>
 </body>
 </html>

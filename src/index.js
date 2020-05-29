@@ -9,6 +9,7 @@ export default class Tsumami {
   #scale;
   #min;
   #max;
+  #obj;
 
   constructor(settings) {
     settings = (settings === undefined) ? {} : settings;
@@ -22,6 +23,9 @@ export default class Tsumami {
     this.#scale = settings.scale || 1.2; //メータースケール         To Do
     this.#min = settings.min || 0; //最小値
     this.#max = settings.max || 100; // 最大値
+    this.#obj = settings.obj || "";
+
+    // this.value = this.#min; //初期値
 
     this.#createTag();
 
@@ -189,8 +193,8 @@ export default class Tsumami {
 
   // マウス操作
   #eventAdd = (element) => {
-    this.click = false;
-    this.memoryY = 0;
+    this.#click = false;
+    this.#memoryY = 0;
     element.addEventListener('mousedown', this.#OnMouseDown, false);
     window.addEventListener('mousemove', (e) => {
       this.#OnMouseMove(e, element)
@@ -198,36 +202,54 @@ export default class Tsumami {
     window.addEventListener('mouseup', this.#OnMouseUp, false);
   }
 
+  #click;
+  #memoryY;
   #OnMouseDown = (event) => {
-    this.click = true;
-    this.memoryY = event.clientY;
+    this.#click = true;
+    this.#memoryY = event.clientY;
     console.log("MouseDown");
   }
 
   #OnMouseMove = (event, element) => {
-    if (this.click) {
-      let rotateDegreeBefore = +(element.style.transform.replace("rotate(", "").replace("deg)", ""));
-      let rotateDegreeAfter = rotateDegreeBefore + (event.clientY - this.memoryY) * 3;
+    if (this.#click) {
+      const rotateDegreeBefore = +(element.style.transform.replace("rotate(", "").replace("deg)", ""));
+      let rotateDegreeAfter = rotateDegreeBefore + (event.clientY - this.#memoryY) * 3;
       if (rotateDegreeAfter < -this.#degree / 2) {
         rotateDegreeAfter = -this.#degree / 2;
       } else if (rotateDegreeAfter > this.#degree / 2) {
         rotateDegreeAfter = this.#degree / 2;
       }
-      element.style.transform = this.#rotate(this.#limit(rotateDegreeAfter, -this.#degree / 2, this.#degree / 2));
-      this.memoryY = event.clientY;
+
+      const degValue = this.#limit(rotateDegreeAfter, -this.#degree / 2, this.#degree / 2);
+      element.style.transform = this.#rotate(degValue);
+      this.#memoryY = event.clientY;
+
+      this.#outputObject.value = (this.#max - this.#min) * (rotateDegreeAfter + this.#degree / 2) / this.#degree;
+
       console.log("MouseMove");
     }
   }
 
   #OnMouseUp = (event) => {
-    this.click = false;
+    this.#click = false;
     console.log("MouseUp");
   }
 
-  //値を返す
-  getValue = () => {
-
-  }
+  //オブジェクトに値をセット
+  #outputObject = (()=>{
+    var val = Object.create(null);
+    var memValue = 0;
+    Object.defineProperty(val, 'value', {
+      set: (value)=>{
+        if(this.#obj !== ""){
+          this.#obj.value = value; //セット
+        }
+        memValue = value;
+      },
+      get: ()=>{return memValue;}
+    });
+    return val;
+  })();
 
   // css単位系
   #px = (num) => {
