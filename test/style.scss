@@ -125,28 +125,28 @@ $meter-size:10px;
       }
     }
     &:nth-child(5) {
-      transform: rotate(calc(#{$deg11}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + (#{$deg} + #{$deg11}) /2)) skewY(calc(-90deg + #{$deg11}));
+      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + #{$deg /2})) skewY(calc(-90deg + #{$deg11}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg11}));
         background: limegreen;
       }
     }
     &:nth-child(6) {
-      transform: rotate(calc(#{$deg12}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 90deg + (#{$deg} + #{$deg12}) /2)) skewY(calc(-90deg + #{$deg12}));
+      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 90deg + #{$deg} /2)) skewY(calc(-90deg + #{$deg12}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg12}));
         background: lightblue;
       }
     }
     &:nth-child(7) {
-      transform: rotate(calc(#{$deg13}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 180deg + (#{$deg} + #{$deg13}) /2)) skewY(calc(-90deg + #{$deg13}));
+      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 180deg + #{$deg} /2)) skewY(calc(-90deg + #{$deg13}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg13}));
         background: lightgreen;
       }
     }
     &:nth-child(8) {
-      transform: rotate(calc(#{$deg14}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 270deg + (#{$deg} + #{$deg14}) /2)) skewY(calc(-90deg + #{$deg14}));
+      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 270deg + #{$deg} /2)) skewY(calc(-90deg + #{$deg14}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg14}));
         background: lightgray;
