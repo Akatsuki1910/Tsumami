@@ -1,9 +1,14 @@
 $size:100px;
 $color:red;
 $deg:90deg;
-$deg2:90deg;
-$deg3:90deg;
-$deg4:50deg;
+$deg2:0deg;
+$deg3:0deg;
+$deg4:0deg;
+
+$deg11:90deg;
+$deg12:45deg;
+$deg13:0deg;
+$deg14:0deg;
 $rotate:180deg;
 $meter-size:10px;
 
@@ -21,7 +26,7 @@ $meter-size:10px;
   background: yellow;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%) rotate(-20deg);
+  transform: translateX(-50%) translateY(-50%) rotate(-135deg);
   border-radius: $size /2;
 }
 
@@ -117,6 +122,34 @@ $meter-size:10px;
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg4}));
         background: gray;
+      }
+    }
+    &:nth-child(5) {
+      transform: rotate(calc(#{$deg11}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + (#{$deg} + #{$deg11}) /2)) skewY(calc(-90deg + #{$deg11}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg11}));
+        background: limegreen;
+      }
+    }
+    &:nth-child(6) {
+      transform: rotate(calc(#{$deg12}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 90deg + (#{$deg} + #{$deg12}) /2)) skewY(calc(-90deg + #{$deg12}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg12}));
+        background: lightblue;
+      }
+    }
+    &:nth-child(7) {
+      transform: rotate(calc(#{$deg13}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 180deg + (#{$deg} + #{$deg13}) /2)) skewY(calc(-90deg + #{$deg13}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg13}));
+        background: lightgreen;
+      }
+    }
+    &:nth-child(8) {
+      transform: rotate(calc(#{$deg14}/(-2) + #{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 270deg + (#{$deg} + #{$deg14}) /2)) skewY(calc(-90deg + #{$deg14}));
+      .slice-contents {
+        transform: skewY(calc(90deg - #{$deg14}));
+        background: lightgray;
       }
     }
   }

@@ -3,7 +3,7 @@ export default class Tsumami {
   #target;
   #bgcolor;
   #tmmcolor;
-  #mgcolor;
+  #mbgcolor;
   #meterSize;
   #degree;
   #scale;
@@ -17,7 +17,7 @@ export default class Tsumami {
     this.#target = settings.target || document.getElementById("tsumami"); //ターゲット
     this.#bgcolor = settings.bgcolor || "red"; //背景色
     this.#tmmcolor = settings.tmmcolor || "yellow"; //つまみ色
-    this.#mgcolor = settings.gmcolor || "black"; //メーター色
+    this.#mbgcolor = settings.mbgcolor || "black"; //メーター背景色
     this.#meterSize = settings.meterSize || 10; //メーター幅
     this.#degree = settings.degree || 270; //メーター表示幅
     this.#scale = settings.scale || 1.2; //メータースケール         To Do
@@ -33,10 +33,10 @@ export default class Tsumami {
   }
 
   #createTag = () => {
-    this.meter = document.createElement('div');
+    this.meterbg = document.createElement('div');
     this.pie = document.createElement('ul');
-    this.meterhole = document.createElement('div');
-    this.meterholeout = document.createElement('div');
+    this.meterbghole = document.createElement('div');
+    this.meterbgholeout = document.createElement('div');
     this.tsumami = document.createElement('div');
     this.marker = document.createElement('div');
     this.slice = [];
@@ -53,14 +53,14 @@ export default class Tsumami {
       background: this.#bgcolor
     });
 
-    // メーター
-    this.#addStyleElement(this.meter, {
+    // メーター背景
+    this.#addStyleElement(this.meterbg, {
       center: true,
       borderRadius: "50%",
-      background: this.#mgcolor,
+      background: this.#mbgcolor,
       width: this.#px(this.#size / this.#scale),
       height: this.#px(this.#size / this.#scale),
-    }, "tsumami-meter", this.#target);
+    }, "tsumami-meterbg", this.#target);
 
     // メータを隠す
     this.#addStyleElement(this.pie, {
@@ -73,22 +73,22 @@ export default class Tsumami {
       height: this.#px(this.#size),
       left: this.#px((this.#size - this.#size / this.#scale) / (-2)),
       top: this.#px((this.#size - this.#size / this.#scale) / (-2)),
-    }, "tsumami-meter", this.meter);
+    }, "tsumami-meter", this.meterbg);
 
     // 中身
     this.#createSlice(this.#degree);
 
     // 内円
-    this.#addStyleElement(this.meterhole, {
+    this.#addStyleElement(this.meterbghole, {
       center: true,
       borderRadius: "50%",
       width: this.#px(this.#size / this.#scale - this.#meterSize),
       height: this.#px(this.#size / this.#scale - this.#meterSize),
       background: this.#bgcolor,
-    }, "tsumami-meterhole", this.meter);
+    }, "tsumami-meterhole", this.meterbg);
 
     // 外円
-    this.#addStyleElement(this.meterholeout, {
+    this.#addStyleElement(this.meterbgholeout, {
       center: false,
       position: "absolute",
       borderRadius: "50%",
@@ -100,7 +100,7 @@ export default class Tsumami {
       top: "50%",
       left: "50%",
       transform: this.#whileSpace(["translateX(-50%)", "translateY(-50%)"]),
-    }, "tsumami-meterhole-out", this.meter);
+    }, "tsumami-meterhole-out", this.meterbg);
 
     // つまみ
     this.#addStyleElement(this.tsumami, {
@@ -153,11 +153,13 @@ export default class Tsumami {
   // メータを隠す扇形作成
   #createSlice = (degree) => {
     degree = (degree > 360) ? 0 : 360 - degree;
-    const bf = ((degree - 90 * (degree / 90)) % 90 == 0) ? 0 : 1;
-    const d = degree / 90 + bf;
-    for (let i = 0; i < d; i++) {
+    for (let i = 0; i < 4; i++) {
       let degreePiece = 0;
-      if (degree >= 90) {
+      if(degree == 0){
+        this.slice[i] = "";
+        this.sliceContents[i] = "";
+        continue;
+      }else if (degree >= 90) {
         degreePiece = 90;
         degree -= 90;
       } else {
@@ -170,11 +172,8 @@ export default class Tsumami {
         center: false,
         overflow: "hidden",
         position: "absolute",
-        width: "50%",
-        height: "50%",
-        top: 0,
-        right: 0,
-        transformOrigin: "0% 100%",
+        width: "50%", height: "50%",
+        top: 0, right: 0, transformOrigin: "0% 100%",
         transform: this.#whileSpace([this.#rotate(degreePiece / (-2) + 180 - i * 45 + degree / 2), this.#skewY(-90 + degreePiece)]),
       }, "slice", this.pie);
 
@@ -183,8 +182,7 @@ export default class Tsumami {
         position: "absolute",
         left: "-100%",
         borderRadius: "50%",
-        width: "200%",
-        height: "200%",
+        width: "200%", height: "200%",
         background: this.#bgcolor,
         transform: this.#skewY(90 - degreePiece),
       }, "slice-contents", this.slice[i]);

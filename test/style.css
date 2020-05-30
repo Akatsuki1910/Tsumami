@@ -12,8 +12,8 @@
   background: yellow;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-20deg);
-          transform: translateX(-50%) translateY(-50%) rotate(-20deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-135deg);
+          transform: translateX(-50%) translateY(-50%) rotate(-135deg);
   border-radius: 50px;
 }
 
@@ -99,8 +99,8 @@
 }
 
 .pie .slice:nth-child(1) {
-  -webkit-transform: rotate(calc(90deg/(-2) + 180deg + 90deg /2 + 90deg /2 + 50deg /2)) skewY(calc(-90deg + 90deg));
-          transform: rotate(calc(90deg/(-2) + 180deg + 90deg /2 + 90deg /2 + 50deg /2)) skewY(calc(-90deg + 90deg));
+  -webkit-transform: rotate(calc(90deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2)) skewY(calc(-90deg + 90deg));
+          transform: rotate(calc(90deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2)) skewY(calc(-90deg + 90deg));
 }
 
 .pie .slice:nth-child(1) .slice-contents {
@@ -110,34 +110,79 @@
 }
 
 .pie .slice:nth-child(2) {
-  -webkit-transform: rotate(calc(90deg/(-2) + 180deg - (45deg) + 90deg /2 + 50deg /2)) skewY(calc(-90deg + 90deg));
-          transform: rotate(calc(90deg/(-2) + 180deg - (45deg) + 90deg /2 + 50deg /2)) skewY(calc(-90deg + 90deg));
+  -webkit-transform: rotate(calc(0deg/(-2) + 180deg - (45deg) + 0deg /2 + 0deg /2)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(0deg/(-2) + 180deg - (45deg) + 0deg /2 + 0deg /2)) skewY(calc(-90deg + 0deg));
 }
 
 .pie .slice:nth-child(2) .slice-contents {
-  -webkit-transform: skewY(calc(90deg - 90deg));
-          transform: skewY(calc(90deg - 90deg));
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
   background: green;
 }
 
 .pie .slice:nth-child(3) {
-  -webkit-transform: rotate(calc(90deg/(-2) + 180deg - (90deg) + 50deg /2)) skewY(calc(-90deg + 90deg));
-          transform: rotate(calc(90deg/(-2) + 180deg - (90deg) + 50deg /2)) skewY(calc(-90deg + 90deg));
+  -webkit-transform: rotate(calc(0deg/(-2) + 180deg - (90deg) + 0deg /2)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(0deg/(-2) + 180deg - (90deg) + 0deg /2)) skewY(calc(-90deg + 0deg));
 }
 
 .pie .slice:nth-child(3) .slice-contents {
-  -webkit-transform: skewY(calc(90deg - 90deg));
-          transform: skewY(calc(90deg - 90deg));
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
   background: purple;
 }
 
 .pie .slice:nth-child(4) {
-  -webkit-transform: rotate(calc(50deg/(-2) + 180deg - (135deg))) skewY(calc(-90deg + 50deg));
-          transform: rotate(calc(50deg/(-2) + 180deg - (135deg))) skewY(calc(-90deg + 50deg));
+  -webkit-transform: rotate(calc(0deg/(-2) + 180deg - (135deg))) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(0deg/(-2) + 180deg - (135deg))) skewY(calc(-90deg + 0deg));
 }
 
 .pie .slice:nth-child(4) .slice-contents {
-  -webkit-transform: skewY(calc(90deg - 50deg));
-          transform: skewY(calc(90deg - 50deg));
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
   background: gray;
 }
+
+.pie .slice:nth-child(5) {
+  -webkit-transform: rotate(calc(90deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + (90deg + 90deg) /2)) skewY(calc(-90deg + 90deg));
+          transform: rotate(calc(90deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + (90deg + 90deg) /2)) skewY(calc(-90deg + 90deg));
+}
+
+.pie .slice:nth-child(5) .slice-contents {
+  -webkit-transform: skewY(calc(90deg - 90deg));
+          transform: skewY(calc(90deg - 90deg));
+  background: limegreen;
+}
+
+.pie .slice:nth-child(6) {
+  -webkit-transform: rotate(calc(45deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + 90deg + (90deg + 45deg) /2)) skewY(calc(-90deg + 45deg));
+          transform: rotate(calc(45deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + 90deg + (90deg + 45deg) /2)) skewY(calc(-90deg + 45deg));
+}
+
+.pie .slice:nth-child(6) .slice-contents {
+  -webkit-transform: skewY(calc(90deg - 45deg));
+          transform: skewY(calc(90deg - 45deg));
+  background: lightblue;
+}
+
+.pie .slice:nth-child(7) {
+  -webkit-transform: rotate(calc(0deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + 180deg + (90deg + 0deg) /2)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(0deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + 180deg + (90deg + 0deg) /2)) skewY(calc(-90deg + 0deg));
+}
+
+.pie .slice:nth-child(7) .slice-contents {
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
+  background: lightgreen;
+}
+
+.pie .slice:nth-child(8) {
+  -webkit-transform: rotate(calc(0deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + 270deg + (90deg + 0deg) /2)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(0deg/(-2) + 180deg + 0deg /2 + 0deg /2 + 0deg /2 + 270deg + (90deg + 0deg) /2)) skewY(calc(-90deg + 0deg));
+}
+
+.pie .slice:nth-child(8) .slice-contents {
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
+  background: lightgray;
+}
+/*# sourceMappingURL=style.css.map */
