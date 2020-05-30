@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Tsumami</title>
   <script src="../dist/tsumami.js"></script>
 </head>
 <body>
@@ -25,7 +25,10 @@
       });
       return val;
     })();
-    var tsumami = new Tsumami({obj: tsumamiValue});
+    var tsumami = new Tsumami({
+      size:100,
+      obj: tsumamiValue
+    });
   </script>
 </body>
 </html>

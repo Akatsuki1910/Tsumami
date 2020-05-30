@@ -22,14 +22,12 @@ export default class Tsumami {
     this.#mbgcolor = settings.mbgcolor || "black"; //メーター背景色
     this.#meterSize = settings.meterSize || 10; //メーター幅
     this.#degree = settings.degree || 270; //メーター表示幅
-    this.#scale = settings.scale || 1.2; //メータースケール         To Do
+    this.#scale = settings.scale || 1.2; //メータースケール
     this.#min = settings.min || 0; //最小値
     this.#max = settings.max || 100; // 最大値
     this.#obj = settings.obj || ""; //値を取る変数
     this.#mcolor = settings.mcolor || "blue"; //メーターの色
     this.#point = settings.point || "purple"; //ポイントの色
-
-    // this.value = this.#min; //初期値
 
     this.#createTag();
 
@@ -71,7 +69,7 @@ export default class Tsumami {
     // メータを隠す or メーター部の枠
     this.#addStyleElement(this.pie, {
       center: false,
-      overflow:"hidden",
+      overflow: "hidden",
       borderRadius: "50%",
       position: "absolute",
       padding: 0,
@@ -164,7 +162,8 @@ export default class Tsumami {
     center: false,
     overflow: "hidden",
     position: "absolute",
-    width: "50%", height: "50%",
+    width: "50%",
+    height: "50%",
     transformOrigin: "0% 100%",
   }
 
@@ -173,21 +172,22 @@ export default class Tsumami {
     position: "absolute",
     left: "-100%",
     borderRadius: "50%",
-    width: "200%", height: "200%",
+    width: "200%",
+    height: "200%",
   }
 
   // メータを隠す扇形作成
   #createsliceMeterBg = (degree) => {
     degree = (degree > 360) ? 0 : 360 - degree;
-    const bf = (degree % 90 ==0)?0:1;
+    const bf = (degree % 90 == 0) ? 0 : 1;
     const num = degree / 90 + bf;
     for (let i = 0; i < num; i++) {
       let degreePiece = 0;
-      if(degree == 0){
+      if (degree == 0) {
         this.sliceMeterBg[i] = "";
         this.sliceMeterBgContents[i] = "";
         continue;
-      }else if (degree >= 90) {
+      } else if (degree >= 90) {
         degreePiece = 90;
         degree -= 90;
       } else {
@@ -198,7 +198,8 @@ export default class Tsumami {
       this.sliceMeterBgContents[i] = document.createElement("div");
       this.#addStyleElement(this.sliceMeterBg[i], {
         ...this.#meterStyle,
-        top: 0, right: 0,
+        top: 0,
+        right: 0,
         transform: this.#whileSpace([this.#rotate(degreePiece / (-2) + 180 - i * 45 + degree / 2), this.#skewY(-90 + degreePiece)]),
       }, "sliceMeterBg", this.pie);
 
@@ -212,14 +213,25 @@ export default class Tsumami {
 
   // メーター作成
   #createsliceMeter = (degree) => {
-    const bf = (degree % 90 ==0)?0:1;
+    const bf = (degree % 90 == 0) ? 0 : 1;
     const num = degree / 90 + bf;
     degree = (degree > 360) ? 0 : 360 - degree;
-    var tr = [
-      {top:this.#px(0),right:this.#px(-1)},
-      {top:this.#px(1),right:this.#px(0)},
-      {top:this.#px(0),right:this.#px(1)},
-      {top:this.#px(-1),right:this.#px(0)},
+    var tr = [{
+        top: this.#px(0),
+        right: this.#px(-1)
+      },
+      {
+        top: this.#px(1),
+        right: this.#px(0)
+      },
+      {
+        top: this.#px(0),
+        right: this.#px(1)
+      },
+      {
+        top: this.#px(-1),
+        right: this.#px(0)
+      },
     ];
     for (let i = 0; i < num; i++) {
       this.sliceMeter[i] = document.createElement("li");
@@ -259,7 +271,7 @@ export default class Tsumami {
 
   #OnMouseMove = (event, element) => {
     if (this.#click) {
-      const rotateDegreeBefore = this.#returnTransformValue(element.style.transform,"rotate");
+      const rotateDegreeBefore = this.#returnTransformValue(element.style.transform, "rotate");
       let rotateDegreeAfter = rotateDegreeBefore + (event.clientY - this.#memoryY) * 3;
       if (rotateDegreeAfter < -this.#degree / 2) {
         rotateDegreeAfter = -this.#degree / 2;
@@ -271,7 +283,7 @@ export default class Tsumami {
       element.style.transform = this.#rotate(degValue);
       this.#memoryY = event.clientY;
 
-      this.#rotateMeter(rotateDegreeAfter + this.#degree / 2,this.sliceMeter,this.sliceMeterContents);
+      this.#rotateMeter(rotateDegreeAfter + this.#degree / 2, this.sliceMeter, this.sliceMeterContents);
 
       this.#outputObject.value = (this.#max - this.#min) * (rotateDegreeAfter + this.#degree / 2) / this.#degree;
 
@@ -285,30 +297,32 @@ export default class Tsumami {
   }
 
   //オブジェクトに値をセット
-  #outputObject = (()=>{
+  #outputObject = (() => {
     var val = Object.create(null);
     var memValue = 0;
     Object.defineProperty(val, 'value', {
-      set: (value)=>{
-        if(this.#obj !== ""){
+      set: (value) => {
+        if (this.#obj !== "") {
           this.#obj.value = value; //セット
         }
         memValue = value;
       },
-      get: ()=>{return memValue;}
+      get: () => {
+        return memValue;
+      }
     });
     return val;
   })();
 
-  #rotateMeter = (degree,sM,sMC) => {
+  #rotateMeter = (degree, sM, sMC) => {
     for (let i = 0; i < this.sliceMeter.length; i++) {
       var rotateDeg = 0;
-      if(degree>=90){
+      if (degree >= 90) {
         rotateDeg = 90;
-        degree-=90;
-      }else{
+        degree -= 90;
+      } else {
         rotateDeg = degree;
-        degree=0;
+        degree = 0;
       }
       const smTransform = sM[i].style.transform.split(" ");
       sM[i].style.transform = this.#whileSpace([smTransform[0], this.#skewY(-90 + rotateDeg)]);
@@ -333,8 +347,7 @@ export default class Tsumami {
     return "skewY(" + this.#deg(Math.floor(num)) + ")";
   }
 
-  // css取得系
-
+  // css取得/付与系
   #whileSpace = (obj) => {
     let returnObj = "";
     for (let v of obj) {
@@ -344,7 +357,7 @@ export default class Tsumami {
   }
 
   #returnTransformValue = (element, name) => {
-    const tName = name+"(";
+    const tName = name + "(";
     return +(element.replace(tName, "").replace("deg)", ""));
   }
 
