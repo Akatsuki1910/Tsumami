@@ -71,6 +71,7 @@ export default class Tsumami {
     // メータを隠す or メーター部の枠
     this.#addStyleElement(this.pie, {
       center: false,
+      overflow:"hidden",
       borderRadius: "50%",
       position: "absolute",
       padding: 0,
@@ -169,7 +170,6 @@ export default class Tsumami {
 
   #meterContentStyle = {
     center: false,
-    overflow: "hidden",
     position: "absolute",
     left: "-100%",
     borderRadius: "50%",
