@@ -43,5 +43,9 @@
     "range",
     "javascript",
     "input"
-  ]
+  ],
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/akatsukicirno"
+  }
 }
