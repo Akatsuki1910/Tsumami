@@ -1,11 +1,12 @@
 module.exports = {
-  mode: "development",
-  devtool: 'source-map',
+  mode: "production",
+  devtool: 'inline-source-map',
   entry: "./src/index.js",
   output: {
     library: "Tsumami",
     libraryExport: "default",
     libraryTarget: "umd",
+    globalObject: 'this',
     filename:"tsumami.js"
   },
   module: {
@@ -20,5 +21,7 @@ module.exports = {
       }
     ]
   },
-  devtool: 'inline-source-map'
+  optimization: {
+    minimize: true,
+  }
 };

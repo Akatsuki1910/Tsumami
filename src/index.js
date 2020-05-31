@@ -1,3 +1,5 @@
+import * as cssFunc from "./cssFunc";
+
 export default class Tsumami {
   #size;
   #target;
@@ -52,8 +54,8 @@ export default class Tsumami {
     this.#addStyleElement(this.#target, {
       center: false,
       position: "relative",
-      width: this.#px(this.#size),
-      height: this.#px(this.#size),
+      width: cssFunc._px(this.#size),
+      height: cssFunc._px(this.#size),
       background: this.#bgcolor
     });
 
@@ -62,8 +64,8 @@ export default class Tsumami {
       center: true,
       borderRadius: "50%",
       background: this.#mbgcolor,
-      width: this.#px(this.#size / this.#scale),
-      height: this.#px(this.#size / this.#scale),
+      width: cssFunc._px(this.#size / this.#scale),
+      height: cssFunc._px(this.#size / this.#scale),
     }, "tsumami-meterbg", this.#target);
 
     // メータを隠す or メーター部の枠
@@ -74,10 +76,10 @@ export default class Tsumami {
       position: "absolute",
       padding: 0,
       margin: 0,
-      width: this.#px(this.#size),
-      height: this.#px(this.#size),
-      left: this.#px((this.#size - this.#size / this.#scale) / (-2)),
-      top: this.#px((this.#size - this.#size / this.#scale) / (-2)),
+      width: cssFunc._px(this.#size),
+      height: cssFunc._px(this.#size),
+      left: cssFunc._px((this.#size - this.#size / this.#scale) / (-2)),
+      top: cssFunc._px((this.#size - this.#size / this.#scale) / (-2)),
     }, "tsumami-meter", this.meterbg);
 
     // メータを隠す扇形作成
@@ -90,8 +92,8 @@ export default class Tsumami {
     this.#addStyleElement(this.meterbghole, {
       center: true,
       borderRadius: "50%",
-      width: this.#px(this.#size / this.#scale - this.#meterSize),
-      height: this.#px(this.#size / this.#scale - this.#meterSize),
+      width: cssFunc._px(this.#size / this.#scale - this.#meterSize),
+      height: cssFunc._px(this.#size / this.#scale - this.#meterSize),
       background: this.#bgcolor,
     }, "tsumami-meterhole", this.meterbg);
 
@@ -100,25 +102,25 @@ export default class Tsumami {
       center: false,
       position: "absolute",
       borderRadius: "50%",
-      width: this.#px(this.#size / this.#scale),
-      height: this.#px(this.#size / this.#scale),
+      width: cssFunc._px(this.#size / this.#scale),
+      height: cssFunc._px(this.#size / this.#scale),
       background: "rgba(0,0,0,0)",
-      border: this.#whileSpace(["solid", this.#px((this.#size - this.#size / this.#scale) / 2), this.#bgcolor]),
+      border: cssFunc._whileSpace(["solid", cssFunc._px((this.#size - this.#size / this.#scale) / 2), this.#bgcolor]),
       margin: 0,
       top: "50%",
       left: "50%",
-      transform: this.#whileSpace(["translateX(-50%)", "translateY(-50%)"]),
+      transform: cssFunc._whileSpace(["translateX(-50%)", "translateY(-50%)"]),
     }, "tsumami-meterhole-out", this.meterbg);
 
     // つまみ
     this.#addStyleElement(this.tsumami, {
       center: true,
       userSelect: "none",
-      width: this.#px(this.#size / 2),
-      height: this.#px(this.#size / 2),
+      width: cssFunc._px(this.#size / 2),
+      height: cssFunc._px(this.#size / 2),
       background: this.#tmmcolor,
       borderRadius: "50%",
-      transform: this.#rotate(this.#degree / -2),
+      transform: cssFunc._rotate(this.#degree / -2),
     }, "tsumami-inner", this.#target);
 
     // 針
@@ -200,13 +202,13 @@ export default class Tsumami {
         ...this.#meterStyle,
         top: 0,
         right: 0,
-        transform: this.#whileSpace([this.#rotate(degreePiece / (-2) + 180 - i * 45 + degree / 2), this.#skewY(-90 + degreePiece)]),
+        transform: cssFunc._whileSpace([cssFunc._rotate(degreePiece / (-2) + 180 - i * 45 + degree / 2), cssFunc._skewY(-90 + degreePiece)]),
       }, "sliceMeterBg", this.pie);
 
       this.#addStyleElement(this.sliceMeterBgContents[i], {
         ...this.#meterContentStyle,
         background: this.#bgcolor,
-        transform: this.#skewY(90 - degreePiece),
+        transform: cssFunc._skewY(90 - degreePiece),
       }, "sliceMeterBg-contents", this.sliceMeterBg[i]);
     }
   }
@@ -217,20 +219,20 @@ export default class Tsumami {
     const num = degree / 90 + bf;
     degree = (degree > 360) ? 0 : 360 - degree;
     var tr = [{
-        top: this.#px(0),
-        right: this.#px(-1)
+        top: cssFunc._px(0),
+        right: cssFunc._px(-1)
       },
       {
-        top: this.#px(1),
-        right: this.#px(0)
+        top: cssFunc._px(1),
+        right: cssFunc._px(0)
       },
       {
-        top: this.#px(0),
-        right: this.#px(1)
+        top: cssFunc._px(0),
+        right: cssFunc._px(1)
       },
       {
-        top: this.#px(-1),
-        right: this.#px(0)
+        top: cssFunc._px(-1),
+        right: cssFunc._px(0)
       },
     ];
     for (let i = 0; i < num; i++) {
@@ -238,14 +240,14 @@ export default class Tsumami {
       this.sliceMeterContents[i] = document.createElement("div");
       this.#addStyleElement(this.sliceMeter[i], {
         ...this.#meterStyle,
-        transform: this.#whileSpace([this.#rotate(180 + 90 * i + degree / 2), this.#skewY(-90)]),
+        transform: cssFunc._whileSpace([cssFunc._rotate(180 + 90 * i + degree / 2), cssFunc._skewY(-90)]),
         ...tr[i]
       }, "sliceMeter", this.pie);
 
       this.#addStyleElement(this.sliceMeterContents[i], {
         ...this.#meterContentStyle,
         background: this.#mcolor,
-        transform: this.#skewY(90),
+        transform: cssFunc._skewY(90),
       }, "sliceMeter-contents", this.sliceMeter[i]);
     }
   }
@@ -271,7 +273,7 @@ export default class Tsumami {
 
   #OnMouseMove = (event, element) => {
     if (this.#click) {
-      const rotateDegreeBefore = this.#returnTransformValue(element.style.transform, "rotate");
+      const rotateDegreeBefore = cssFunc._returnTransformValue(element.style.transform, "rotate");
       let rotateDegreeAfter = rotateDegreeBefore + (event.clientY - this.#memoryY) * 3;
       if (rotateDegreeAfter < -this.#degree / 2) {
         rotateDegreeAfter = -this.#degree / 2;
@@ -280,7 +282,7 @@ export default class Tsumami {
       }
 
       const degValue = this.#limit(rotateDegreeAfter, -this.#degree / 2, this.#degree / 2);
-      element.style.transform = this.#rotate(degValue);
+      element.style.transform = cssFunc._rotate(degValue);
       this.#memoryY = event.clientY;
 
       this.#rotateMeter(rotateDegreeAfter + this.#degree / 2, this.sliceMeter, this.sliceMeterContents);
@@ -325,40 +327,9 @@ export default class Tsumami {
         degree = 0;
       }
       const smTransform = sM[i].style.transform.split(" ");
-      sM[i].style.transform = this.#whileSpace([smTransform[0], this.#skewY(-90 + rotateDeg)]);
-      sMC[i].style.transform = this.#skewY(90 - rotateDeg);
+      sM[i].style.transform = cssFunc._whileSpace([smTransform[0], cssFunc._skewY(-90 + rotateDeg)]);
+      sMC[i].style.transform = cssFunc._skewY(90 - rotateDeg);
     }
-  }
-
-  // css単位系
-  #px = (num) => {
-    return num + "px";
-  }
-
-  #deg = (num) => {
-    return num + "deg";
-  }
-
-  #rotate = (num) => {
-    return "rotate(" + this.#deg(Math.floor(num)) + ")";
-  }
-
-  #skewY = (num) => {
-    return "skewY(" + this.#deg(Math.floor(num)) + ")";
-  }
-
-  // css取得/付与系
-  #whileSpace = (obj) => {
-    let returnObj = "";
-    for (let v of obj) {
-      returnObj += v + " ";
-    }
-    return returnObj;
-  }
-
-  #returnTransformValue = (element, name) => {
-    const tName = name + "(";
-    return +(element.replace(tName, "").replace("deg)", ""));
   }
 
   // その他関数

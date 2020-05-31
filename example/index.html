@@ -12,23 +12,23 @@
   <br>
   round:<span id="round">0</span>
   <script>
-    var tsumamiValue = (()=>{
-      var val = Object.create(null);
-      var memValue = 0;
+    const tsumamiValue = (()=>{
+      const val = Object.create(null);
       Object.defineProperty(val, 'value', {
         set: (value)=>{
           //ここに処理を書く
           document.getElementById("nomal").innerHTML = value;
           document.getElementById("round").innerHTML = Math.round(value);
-          memValue = value;
         }
       });
       return val;
     })();
-    var tsumami = new Tsumami({
-      size:100,
+
+    const option = {
       obj: tsumamiValue
-    });
+    }
+
+    const tsumami = new Tsumami(option);
   </script>
 </body>
 </html>
