@@ -35,7 +35,7 @@ const tsumami = new Tsumami(option);
 
 ## Options
 |用途|変数名|デフォルト値|備考|
-|-|-|-|-|
+|---|---|---|---|
 |サイズ|size|100||
 |ターゲット|target|document.getElementById("tsumami")||
 |背景色|bgcolor|"red"|cssの色指定<sup>[1](#note1)</sup>|
