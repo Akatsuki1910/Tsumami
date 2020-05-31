@@ -1,7 +1,7 @@
 # Tsumami
 スライダーの代わりのつまみ。
 
-## 使用方法
+## Installation
 
 ```html
 <script src="dist/tsumami.js"></script>
@@ -11,7 +11,7 @@
 import Tsumami from 'tsumami.js';
 ```
 
-## 使用例
+## Usage
 
 ```js
 const tsumamiValue = (()=>{
@@ -31,7 +31,7 @@ const option = {
 const tsumami = new Tsumami(option);
 ```
 
-### オプション
+## Options
 |用途|変数名|デフォルト値|備考|
 |-|-|-|-|
 |サイズ|size|100||
@@ -53,5 +53,5 @@ cssの色指定方法ならなんでもいけます(例:カラーコード,RGB,H
 ただし、文字列入力をしてください。
 </p>
 
-## License
+##  License
 MIT License, Copyright (c) 2020 Akatsuki1910
