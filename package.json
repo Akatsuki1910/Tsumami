@@ -1,6 +1,6 @@
 {
   "name": "tsumami.js",
-  "description": "[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)\r [![TWITTER](https://img.shields.io/badge/twitter-nomber1910-blue.svg)](https://twitter.com/nomber1910)\r # Tsumami.js\r スライダーの代わりのつまみ。",
+  "description": "This is a knob in place of a slider.",
   "version": "1.0.0",
   "main": "babel.config.js",
   "directories": {
@@ -31,7 +31,7 @@
     "url": "git+https://github.com/Akatsuki1910/Tsumami.js.git"
   },
   "author": "akatsuki1910 <akatsukicirno@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Akatsuki1910/Tsumami.js/issues"
   },

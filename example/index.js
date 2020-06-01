@@ -2,7 +2,6 @@ const tsumamiValue = (() => {
 	const val = Object.create(null);
 	Object.defineProperty(val, 'value', {
 		set: (value) => {
-			//ここに処理を書く
 			document.getElementById("value").innerHTML = Math.round(value);
 			document.getElementById("wrap").style.opacity = value/100;
 		}

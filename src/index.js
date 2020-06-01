@@ -18,20 +18,20 @@ export default class Tsumami {
 
   constructor(settings) {
     settings = (settings === undefined) ? {} : settings;
-    this.#size = settings.size || 100; //サイズ
-    this.#target = settings.target || document.getElementById("tsumami"); //ターゲット
-    this.#bgcolor = settings.bgcolor || "red"; //背景色
-    this.#tmmcolor = settings.tmmcolor || "yellow"; //つまみ色
-    this.#mbgcolor = settings.mbgcolor || "black"; //メーター背景色
-    this.#meterSize = settings.meterSize || 10; //メーター幅
-    this.#degree = settings.degree || 270; //メーター表示幅
-    this.#scale = settings.scale || 1.2; //メータースケール
-    this.#min = settings.min || 0; //最小値
-    this.#max = settings.max || 100; // 最大値
-    this.#obj = settings.obj || ""; //値を取る変数
-    this.#mcolor = settings.mcolor || "blue"; //メーターの色
-    this.#point = settings.point || "purple"; //ポイントの色
-    this.#value = settings.value || this.#min; //初期値
+    this.#size = settings.size || 100;
+    this.#target = settings.target || document.getElementById("tsumami");
+    this.#bgcolor = settings.bgcolor || "red";
+    this.#tmmcolor = settings.tmmcolor || "yellow";
+    this.#mbgcolor = settings.mbgcolor || "black";
+    this.#meterSize = settings.meterSize || 10;
+    this.#degree = settings.degree || 270;
+    this.#scale = settings.scale || 1.2;
+    this.#min = settings.min || 0;
+    this.#max = settings.max || 100;
+    this.#obj = settings.obj || "";
+    this.#mcolor = settings.mcolor || "blue";
+    this.#point = settings.point || "purple";
+    this.#value = settings.value || this.#min;
 
     this.#createTag();
 
@@ -52,7 +52,7 @@ export default class Tsumami {
   }
 
   #main = () => {
-    // 外枠
+    // outer frame
     this.#addStyleElement(this.#target, {
       center: false,
       position: "relative",
@@ -61,7 +61,7 @@ export default class Tsumami {
       background: this.#bgcolor
     });
 
-    // メーター背景
+    // Meter Background
     this.#addStyleElement(this.meterbg, {
       center: true,
       borderRadius: "50%",
@@ -70,7 +70,7 @@ export default class Tsumami {
       height: cssFunc._px(this.#size / this.#scale),
     }, "tsumami-meterbg", this.#target);
 
-    // メータを隠す or メーター部の枠
+    // Hide the meter or Frame of the meter section
     this.#addStyleElement(this.pie, {
       center: false,
       overflow: "hidden",
@@ -84,13 +84,13 @@ export default class Tsumami {
       top: cssFunc._px((this.#size - this.#size / this.#scale) / (-2)),
     }, "tsumami-meter", this.meterbg);
 
-    // メータを隠す扇形作成
+    // Creating a fan shape to hide the meter
     this.#createsliceMeterBg(this.#degree);
 
-    // メーターを表示する扇形作成作成
+    // Create a fan shape to display the meter
     this.#createsliceMeter(this.#degree);
 
-    // 内円
+    // inner circle
     this.#addStyleElement(this.meterbghole, {
       center: true,
       borderRadius: "50%",
@@ -99,7 +99,7 @@ export default class Tsumami {
       background: this.#bgcolor,
     }, "tsumami-meterhole", this.meterbg);
 
-    // 外円
+    // outer circle
     this.#addStyleElement(this.meterbgholeout, {
       center: false,
       position: "absolute",
@@ -114,7 +114,7 @@ export default class Tsumami {
       transform: cssFunc._whileSpace(["translateX(-50%)", "translateY(-50%)"]),
     }, "tsumami-meterhole-out", this.meterbg);
 
-    // つまみ
+    // snack
     this.#addStyleElement(this.tsumami, {
       center: true,
       userSelect: "none",
@@ -125,7 +125,7 @@ export default class Tsumami {
       transform: cssFunc._rotate(this.#degree / -2),
     }, "tsumami-inner", this.#target);
 
-    // 針
+    // stitch
     this.#addStyleElement(this.point, {
       center: true,
       width: "10%",
@@ -134,10 +134,10 @@ export default class Tsumami {
       transform: "translateY(-100%)",
     }, "tsumami-point", this.tsumami);
 
-    //イベント追加
+    // Additional Events
     this.#eventAdd(this.tsumami);
 
-    // 初期値まで回転
+    // Rotate to initial value
     const firstRotate = this.#value*this.#degree/(this.#max-this.#min);
     this.#rotateMeter(firstRotate);
     this.tsumami.style.transform = cssFunc._rotate(firstRotate - this.#degree/2);
@@ -157,7 +157,7 @@ export default class Tsumami {
     return style;
   }
 
-  // css付与
+  // Add css
   #addStyleElement = (element, style, className = undefined, target = undefined) => {
     if (className !== void 0) element.className = className;
     if (style.center) style = Object.assign(this.#styleCenter(), style);
@@ -186,7 +186,7 @@ export default class Tsumami {
     height: "200%",
   }
 
-  // メータを隠す扇形作成
+  // Creating a fan shape to hide the meter
   #createsliceMeterBg = (degree) => {
     degree = (degree > 360) ? 0 : 360 - degree;
     const bf = (degree % 90 == 0) ? 0 : 1;
@@ -221,7 +221,7 @@ export default class Tsumami {
     }
   }
 
-  // メーター作成
+  // create meter
   #createsliceMeter = (degree) => {
     const bf = (degree % 90 == 0) ? 0 : 1;
     const num = degree / 90 + bf;
@@ -260,7 +260,7 @@ export default class Tsumami {
     }
   }
 
-  // マウス操作
+  // mouse event
   #eventAdd = (element) => {
     this.#click = false;
     this.#memoryY = 0;
@@ -300,14 +300,14 @@ export default class Tsumami {
     // console.log("MouseUp");
   }
 
-  //オブジェクトに値をセット
+  //set value
   #outputObject = (() => {
     var val = Object.create(null);
     var memValue = 0;
     Object.defineProperty(val, 'value', {
       set: (value) => {
         if (this.#obj !== "") {
-          this.#obj.value = value; //セット
+          this.#obj.value = value; //set
         }
         memValue = value;
       },
@@ -336,7 +336,7 @@ export default class Tsumami {
     }
   }
 
-  // その他関数
+  // function
   #limit = (value, min, max) => {
     if (value < min) {
       value = min;
@@ -346,7 +346,7 @@ export default class Tsumami {
     return value;
   }
 
-  // テストログ
+  // test log
   static testlog = () => {
     console.log("testlog");
   }

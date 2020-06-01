@@ -1,4 +1,4 @@
-// css単位系
+// css
 export const _px = (num) => {
 	return num + "px";
 }
