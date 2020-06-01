@@ -1,6 +1,6 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![TWITTER](https://img.shields.io/badge/twitter-nomber1910-blue.svg)](https://twitter.com/nomber1910)
-# Tsumami
+# Tsumami.js
 スライダーの代わりのつまみ。
 
 ## Installation
@@ -65,6 +65,9 @@ cssの色指定方法ならなんでもいけます(例:カラーコード,RGB,H
 MIT License, Copyright (c) 2020 Akatsuki1910
 
 ## 更新
+
+### v1.0.0
+release
 
 ### v0.2.0
 バグ修正
