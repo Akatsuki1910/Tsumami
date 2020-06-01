@@ -50,6 +50,7 @@ const tsumami = new Tsumami(option);
 |値を取る変数 |obj |"" |tsumamiValue |
 |メーターの色 |mcolor |"blue" |cssの色指定<sup>[1](#note1)</sup> |
 |ポイントの色 |point |"purple" |cssの色指定<sup>[1](#note1)</sup> |
+|初期値 |value |0 |min≤value≤max |
 
 <p id="note1">
 cssの色指定方法ならなんでもいけます(例:カラーコード,RGB,HSL)<br>

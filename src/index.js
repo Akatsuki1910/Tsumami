@@ -31,7 +31,7 @@ export default class Tsumami {
     this.#obj = settings.obj || ""; //値を取る変数
     this.#mcolor = settings.mcolor || "blue"; //メーターの色
     this.#point = settings.point || "purple"; //ポイントの色
-    this.#value = settings.value || this.#min;
+    this.#value = settings.value || this.#min; //初期値
 
     this.#createTag();
 
@@ -264,11 +264,11 @@ export default class Tsumami {
   #eventAdd = (element) => {
     this.#click = false;
     this.#memoryY = 0;
-    element.addEventListener('mousedown', this.#OnMouseDown, false);
-    window.addEventListener('mousemove', (e) => {
+    element.addEventListener('pointerdown', this.#OnMouseDown, false);
+    window.addEventListener('pointermove', (e) => {
       this.#OnMouseMove(e, element)
     }, false);
-    window.addEventListener('mouseup', this.#OnMouseUp, false);
+    window.addEventListener('pointerup', this.#OnMouseUp, false);
   }
 
   #click;
