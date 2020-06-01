@@ -63,3 +63,13 @@ cssの色指定方法ならなんでもいけます(例:カラーコード,RGB,H
 
 ##  License
 MIT License, Copyright (c) 2020 Akatsuki1910
+
+## 更新
+
+### v0.2.0
+バグ修正
+初期値設定
+exampleページ作成
+
+### v0.1.0
+最初の更新
