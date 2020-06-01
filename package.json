@@ -1,5 +1,5 @@
 {
-  "name": "tsumami",
+  "name": "tsumami.js",
   "description": "[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)\r [![TWITTER](https://img.shields.io/badge/twitter-nomber1910-blue.svg)](https://twitter.com/nomber1910)\r # Tsumami.js\r スライダーの代わりのつまみ。",
   "version": "1.0.0",
   "main": "babel.config.js",
