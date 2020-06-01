@@ -14,6 +14,7 @@ export default class Tsumami {
   #obj;
   #mcolor;
   #point;
+  #value;
 
   constructor(settings) {
     settings = (settings === undefined) ? {} : settings;
@@ -30,6 +31,7 @@ export default class Tsumami {
     this.#obj = settings.obj || ""; //値を取る変数
     this.#mcolor = settings.mcolor || "blue"; //メーターの色
     this.#point = settings.point || "purple"; //ポイントの色
+    this.#value = settings.value || this.#min;
 
     this.#createTag();
 
@@ -134,6 +136,12 @@ export default class Tsumami {
 
     //イベント追加
     this.#eventAdd(this.tsumami);
+
+    // 初期値まで回転
+    const firstRotate = this.#value*this.#degree/(this.#max-this.#min);
+    this.#rotateMeter(firstRotate);
+    this.tsumami.style.transform = cssFunc._rotate(firstRotate - this.#degree/2);
+    this.#outputObject.value = this.#value;
   }
 
   //center
@@ -275,19 +283,13 @@ export default class Tsumami {
     if (this.#click) {
       const rotateDegreeBefore = cssFunc._returnTransformValue(element.style.transform, "rotate");
       let rotateDegreeAfter = rotateDegreeBefore + (event.clientY - this.#memoryY) * 3;
-      if (rotateDegreeAfter < -this.#degree / 2) {
-        rotateDegreeAfter = -this.#degree / 2;
-      } else if (rotateDegreeAfter > this.#degree / 2) {
-        rotateDegreeAfter = this.#degree / 2;
-      }
-
       const degValue = this.#limit(rotateDegreeAfter, -this.#degree / 2, this.#degree / 2);
       element.style.transform = cssFunc._rotate(degValue);
       this.#memoryY = event.clientY;
 
-      this.#rotateMeter(rotateDegreeAfter + this.#degree / 2, this.sliceMeter, this.sliceMeterContents);
+      this.#rotateMeter(degValue + this.#degree / 2);
 
-      this.#outputObject.value = (this.#max - this.#min) * (rotateDegreeAfter + this.#degree / 2) / this.#degree;
+      this.#outputObject.value = (this.#max - this.#min) * (degValue + this.#degree / 2) / this.#degree + this.#min;
 
       // console.log("MouseMove");
     }
@@ -316,7 +318,9 @@ export default class Tsumami {
     return val;
   })();
 
-  #rotateMeter = (degree, sM, sMC) => {
+  #rotateMeter = (degree) => {
+    const sM = this.sliceMeter;
+    const sMC = this.sliceMeterContents;
     for (let i = 0; i < this.sliceMeter.length; i++) {
       var rotateDeg = 0;
       if (degree >= 90) {

@@ -14,6 +14,7 @@ const option = {
 	obj: tsumamiValue,
 	size: 200,
 	meterSize: 20,
+	value:50
 }
 
 const tsumami = new Tsumami(option);
