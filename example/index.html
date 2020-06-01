@@ -4,31 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tsumami</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+  <link rel="stylesheet" href="style.css">
   <script src="../dist/tsumami.js"></script>
 </head>
 <body>
-  <div class="tsumami" id="tsumami"></div>
-  nomal:<span id="nomal">0</span>
-  <br>
-  round:<span id="round">0</span>
-  <script>
-    const tsumamiValue = (()=>{
-      const val = Object.create(null);
-      Object.defineProperty(val, 'value', {
-        set: (value)=>{
-          //ここに処理を書く
-          document.getElementById("nomal").innerHTML = value;
-          document.getElementById("round").innerHTML = Math.round(value);
-        }
-      });
-      return val;
-    })();
-
-    const option = {
-      obj: tsumamiValue
-    }
-
-    const tsumami = new Tsumami(option);
-  </script>
+  <div id="wrap" class="wrap">
+    <div class="c"></div>
+    <div class="n n1"></div>
+    <div class="n n2"></div>
+    <div class="n n3"></div>
+    <div class="n n4"></div>
+    <div class="n n5"></div>
+    <div class="n n6"></div>
+    <div class="n n7"></div>
+    <div class="n n8"></div>
+    <div class="n n9"></div>
+    <div class="n n10"></div>
+    <div class="n n11"></div>
+    <div class="n n12"></div>
+    <div class="n n13"></div>
+    <div class="n n14"></div>
+    <div class="n n15"></div>
+    <div class="n n16"></div>
+  </div>
+  <div class="title">TSUMAMI</div>
+  <div class="link">
+    <a href="https://github.com/Akatsuki1910/Tsumami"><i class="fab fa-github"></i></a>
+    <a href="https://twitter.com/nomber1910"><i class="fab fa-twitter"></i></a>
+  </div>
+  <div class="tsumami-wrap">
+    <div class="tsumami" id="tsumami"></div>
+  </div>
+  <span id="value" class="value">0</span>
+  <script src="./index.js"></script>
 </body>
 </html>

@@ -56,5 +56,9 @@ cssの色指定方法ならなんでもいけます(例:カラーコード,RGB,H
 ただし、文字列入力をしてください。
 </p>
 
+## LINK
+例 : [example](https://akatsuki1910.github.io/Tsumami/example/)  
+支援 : [support](https://www.patreon.com/akatsukicirno)
+
 ##  License
 MIT License, Copyright (c) 2020 Akatsuki1910

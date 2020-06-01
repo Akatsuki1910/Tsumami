@@ -268,7 +268,7 @@ export default class Tsumami {
   #OnMouseDown = (event) => {
     this.#click = true;
     this.#memoryY = event.clientY;
-    console.log("MouseDown");
+    // console.log("MouseDown");
   }
 
   #OnMouseMove = (event, element) => {
@@ -289,13 +289,13 @@ export default class Tsumami {
 
       this.#outputObject.value = (this.#max - this.#min) * (rotateDegreeAfter + this.#degree / 2) / this.#degree;
 
-      console.log("MouseMove");
+      // console.log("MouseMove");
     }
   }
 
   #OnMouseUp = (event) => {
     this.#click = false;
-    console.log("MouseUp");
+    // console.log("MouseUp");
   }
 
   //オブジェクトに値をセット

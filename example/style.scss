@@ -1,0 +1,83 @@
+html, body{
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background: black;
+}
+
+.tsumami-wrap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.value {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.title{
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	color: blue;
+	font-size: 5rem;
+}
+
+.link{
+	position: absolute;
+	width: 100%;
+	top: 80%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	font-size: 5rem;
+	text-align: center;
+	a{
+		margin: 10%;
+		.fab{
+			color: blue;
+		}
+	}
+}
+
+
+//back
+.wrap{
+	background: white;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.c{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	height: 500px;
+	transform: translateX(-50%) translateY(-50%);
+	border-radius: 50%;
+	background: #f00;
+}
+
+.n{
+	position: absolute;
+	height: 0;
+	border-width:100vmax 10vw;
+	border-color: red transparent;
+	border-style: solid;
+	top: 50%;
+	left: 50%;
+}
+
+@for $i from 1 through 16 {
+	.n#{$i}{
+		transform: translateX(-50%) translateY(-50%) rotate(($i - 1) * 22.5deg);
+	}
+}
