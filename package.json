@@ -1,7 +1,7 @@
 {
   "name": "tsumami.js",
   "description": "This is a knob in place of a slider.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "babel.config.js",
   "directories": {
     "example": "example",
