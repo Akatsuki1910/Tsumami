@@ -69,6 +69,12 @@ MIT License, Copyright (c) 2020 Akatsuki1910
 
 ## Update
 
+### v1.0.2
+Miss fixes.
+
+### v1.0.1
+English Update
+
 ### v1.0.0
 release
 
