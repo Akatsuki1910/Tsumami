@@ -67,7 +67,7 @@ support : [support](https://www.patreon.com/akatsukicirno)
 ##  License
 MIT License, Copyright (c) 2020 Akatsuki1910
 
-## 更新
+## Update
 
 ### v1.0.0
 release
