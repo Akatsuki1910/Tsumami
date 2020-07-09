@@ -12,7 +12,8 @@ const tsumamiValue = (() => {
 const option = {
 	obj: tsumamiValue,
 	size: 200,
-	meterSize: 20
+	meterSize: 20,
+	mode:"nomal"
 }
 
 const tsumami = new Tsumami(option);

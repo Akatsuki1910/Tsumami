@@ -15,6 +15,9 @@ export default class Tsumami {
   #mcolor;
   #point;
   #value;
+  #mode;
+  #centerValue;
+  #modenum;
 
   constructor(settings) {
     settings = (settings === undefined) ? {} : settings;
@@ -32,8 +35,12 @@ export default class Tsumami {
     this.#mcolor = settings.mcolor || "blue";
     this.#point = settings.point || "purple";
     this.#value = settings.value || this.#min;
+    this.#mode = settings.mode || "nomal";
+    this.#centerValue = settings.centerValue || 50;
 
     this.#createTag();
+
+    this.#modeAdjustment();
 
     this.#main();
   }
@@ -49,6 +56,22 @@ export default class Tsumami {
     this.sliceMeterBgContents = [];
     this.sliceMeter = [];
     this.sliceMeterContents = [];
+  }
+
+  #modeAdjustment = () => {
+    var modearr = ["center"];
+    this.#modenum = 0;
+    for(var i in modearr){
+      if(modearr[i]===this.#mode){
+        this.#modenum = i+1;
+        break;
+      }
+    }
+    if(this.#modenum==1){
+      this.#value = 0;
+      this.#min = -this.#centerValue;
+      this.#max = this.#centerValue;
+    }
   }
 
   #main = () => {
@@ -138,9 +161,15 @@ export default class Tsumami {
     this.#eventAdd(this.tsumami);
 
     // Rotate to initial value
-    const firstRotate = this.#value*this.#degree/(this.#max-this.#min);
-    this.#rotateMeter(firstRotate);
-    this.tsumami.style.transform = cssFunc._rotate(firstRotate - this.#degree/2);
+    if(this.#modenum==0){
+      const firstRotate = this.#value*this.#degree/(this.#max-this.#min);
+      this.#rotateMeter(firstRotate);
+      this.tsumami.style.transform = cssFunc._rotate(firstRotate - this.#degree/2);
+    }else if(this.#modenum==1){
+      this.tsumami.style.transform = cssFunc._rotate(0);
+    }
+
+    // Set to initial value
     this.#outputObject.value = this.#value;
   }
 
@@ -190,7 +219,8 @@ export default class Tsumami {
   #createsliceMeterBg = (degree) => {
     degree = (degree > 360) ? 0 : 360 - degree;
     const bf = (degree % 90 == 0) ? 0 : 1;
-    const num = degree / 90 + bf;
+    const num = 4;//degree / 90 + bf;
+
     for (let i = 0; i < num; i++) {
       let degreePiece = 0;
       if (degree == 0) {
@@ -224,7 +254,7 @@ export default class Tsumami {
   // create meter
   #createsliceMeter = (degree) => {
     const bf = (degree % 90 == 0) ? 0 : 1;
-    const num = degree / 90 + bf;
+    const num = 4;//degree / 90 + bf;
     degree = (degree > 360) ? 0 : 360 - degree;
     var tr = [{
         top: cssFunc._px(0),
@@ -243,12 +273,17 @@ export default class Tsumami {
         right: cssFunc._px(0)
       },
     ];
+    const centerRotate = [0,90,0,-90];//#modenum == 1
     for (let i = 0; i < num; i++) {
       this.sliceMeter[i] = document.createElement("li");
       this.sliceMeterContents[i] = document.createElement("div");
+      const transform = {transform: cssFunc._whileSpace([cssFunc._rotate(180 + 90 * i + degree / 2), cssFunc._skewY(-90)])}
+      if(this.#modenum == 1){
+        transform = {transform: cssFunc._whileSpace([cssFunc._rotate(centerRotate[i]), cssFunc._skewY(-90)])}
+      }
       this.#addStyleElement(this.sliceMeter[i], {
         ...this.#meterStyle,
-        transform: cssFunc._whileSpace([cssFunc._rotate(180 + 90 * i + degree / 2), cssFunc._skewY(-90)]),
+        ...transform,
         ...tr[i]
       }, "sliceMeter", this.pie);
 
@@ -321,18 +356,40 @@ export default class Tsumami {
   #rotateMeter = (degree) => {
     const sM = this.sliceMeter;
     const sMC = this.sliceMeterContents;
-    for (let i = 0; i < this.sliceMeter.length; i++) {
-      var rotateDeg = 0;
-      if (degree >= 90) {
-        rotateDeg = 90;
-        degree -= 90;
-      } else {
-        rotateDeg = degree;
-        degree = 0;
+    if(this.#modenum == 0){
+      for (let i = 0; i < this.sliceMeter.length; i++) {
+        var rotateDeg = 0;
+        if (degree >= 90) {
+          rotateDeg = 90;
+          degree -= 90;
+        } else {
+          rotateDeg = degree;
+          degree = 0;
+        }
+        let smTransform = sM[i].style.transform.split(" ")[0];
+        sM[i].style.transform = cssFunc._whileSpace([smTransform, cssFunc._skewY(-90 + rotateDeg)]);
+        sMC[i].style.transform = cssFunc._skewY(90 - rotateDeg);
       }
-      const smTransform = sM[i].style.transform.split(" ");
-      sM[i].style.transform = cssFunc._whileSpace([smTransform[0], cssFunc._skewY(-90 + rotateDeg)]);
-      sMC[i].style.transform = cssFunc._skewY(90 - rotateDeg);
+    }
+
+    if(this.#modenum == 1){
+      var t = [
+        [-90,-1],
+        [0,-1],
+        [0,0],
+        [90,0]
+      ]
+      degree = degree - this.#degree / 2;
+      var rotateDeg = [
+        this.#limit(-degree-90,0,90),
+        this.#limit(-degree,0,90),
+        this.#limit(degree,0,90),
+        this.#limit(degree-90,0,90)
+      ];
+      for (let i = 0; i < this.sliceMeter.length; i++) {
+        sM[i].style.transform = cssFunc._whileSpace([cssFunc._rotate(t[i][0] + t[i][1]*rotateDeg[i]), cssFunc._skewY(-90 + rotateDeg[i])]);
+        sMC[i].style.transform = cssFunc._skewY(90 - rotateDeg[i]);
+      }
     }
   }
 

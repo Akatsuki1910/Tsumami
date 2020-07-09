@@ -42,22 +42,32 @@ const tsumami = new Tsumami(option);
 |:---|:---|:---|:---|
 |Size |size |100 | |
 |Target |target |document.getElementById("tsumami") | |
-|Background Color |bgcolor |"red" |css color<sup>[1](#note1)</sup> |
-|Pinch Color |tmmcolor |"yellow" |css color<sup>[1](#note1)</sup> |
-|Meter Background Color |mbgcolor |"black" |css color<sup>[1](#note1)</sup> |
+|Background Color |bgcolor |"red" |css color <sup>[1](#note1)</sup> |
+|Pinch Color |tmmcolor |"yellow" |css color <sup>[1](#note1)</sup> |
+|Meter Background Color |mbgcolor |"black" |css color <sup>[1](#note1)</sup> |
 |Meter Size |meterSize |10 | |
 |Meter Angle |degree |270 |0~360 |
 |Meter Scale |scale |1.2 | |
-|Min Value |min |0 |min < max |
-|Max Value |max |100 |min < max |
+|Min Value |min |0 |min < max <sup>[2](#note2)</sup>|
+|Max Value |max |100 |min < max <sup>[2](#note2)</sup>|
 |Value Obj |obj |"" |tsumamiValue |
-|Meter Color |mcolor |"blue" |css color<sup>[1](#note1)</sup> |
-|Point Color |point |"purple" |css color<sup>[1](#note1)</sup> |
-|Initial Value |value |0 |min ≤ value ≤ max |
+|Meter Color |mcolor |"blue" |css color <sup>[1](#note1)</sup> |
+|Point Color |point |"purple" |css color <sup>[1](#note1)</sup> |
+|Initial Value |value |0 |min ≤ value ≤ max <sup>[2](#note2)</sup>|
+|Mode |mode |nomal |nomal or center |
+|Center Value |centerValue |50 |0 ≤ centerValue <sup>[3](#note3)</sup> |
 
 <p id="note1">
-You can use any color specification method in css.(例:color code,RGB,HSL)<br>
+[1] You can use any color specification method in css.(ex:color code,RGB,HSL)<br>
 However, it should be a string.
+</p>
+
+<p id="note2">
+[2] Ignored if mode is center.
+</p>
+
+<p id="note3">
+[3] Ignored if mode is nomal.
 </p>
 
 ## LINK
@@ -68,6 +78,9 @@ support : [support](https://www.patreon.com/akatsukicirno)
 MIT License, Copyright (c) 2020 Akatsuki1910
 
 ## Update
+
+### v2.0.0
+Compatible with rotation from the center.
 
 ### v1.0.2
 Miss fixes.

@@ -5,12 +5,14 @@ $deg2:0deg;
 $deg3:0deg;
 $deg4:0deg;
 
-$deg11:90deg;
-$deg12:45deg;
-$deg13:0deg;
+$deg11:0deg;
+$deg12:0deg;
+$deg13:90deg;
 $deg14:0deg;
 $rotate:180deg;
 $meter-size:10px;
+
+$insideRotate:0deg;
 
 .outside{
   position: relative;
@@ -26,7 +28,7 @@ $meter-size:10px;
   background: yellow;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%) rotate(-135deg);
+  transform: translateX(-50%) translateY(-50%) rotate($insideRotate);
   border-radius: $size /2;
 }
 
@@ -126,28 +128,28 @@ $meter-size:10px;
       }
     }
     &:nth-child(5) {
-      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + #{$deg /2})) skewY(calc(-90deg + #{$deg11}));
+      transform: rotate(calc(0)) skewY(calc(-90deg + #{$deg11}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg11}));
         background: limegreen;
       }
     }
     &:nth-child(6) {
-      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 90deg + #{$deg} /2)) skewY(calc(-90deg + #{$deg12}));
+      transform: rotate(calc(90deg)) skewY(calc(-90deg + #{$deg12}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg12}));
         background: lightblue;
       }
     }
     &:nth-child(7) {
-      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 180deg + #{$deg} /2)) skewY(calc(-90deg + #{$deg13}));
+      transform: rotate(calc(-#{$deg13})) skewY(calc(-90deg + #{$deg13}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg13}));
         background: lightgreen;
       }
     }
     &:nth-child(8) {
-      transform: rotate(calc(#{$rotate} + #{$deg2} /2 + #{$deg3} /2 + #{$deg4} /2 + 270deg + #{$deg} /2)) skewY(calc(-90deg + #{$deg14}));
+      transform: rotate(calc(-90deg - #{$deg14})) skewY(calc(-90deg + #{$deg14}));
       .slice-contents {
         transform: skewY(calc(90deg - #{$deg14}));
         background: lightgray;

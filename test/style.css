@@ -12,8 +12,8 @@
   background: yellow;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-135deg);
-          transform: translateX(-50%) translateY(-50%) rotate(-135deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(0deg);
+          transform: translateX(-50%) translateY(-50%) rotate(0deg);
   border-radius: 50px;
 }
 
@@ -144,41 +144,41 @@
 }
 
 .pie .slice:nth-child(5) {
-  -webkit-transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 45deg)) skewY(calc(-90deg + 90deg));
-          transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 45deg)) skewY(calc(-90deg + 90deg));
+  -webkit-transform: rotate(calc(0)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(0)) skewY(calc(-90deg + 0deg));
 }
 
 .pie .slice:nth-child(5) .slice-contents {
-  -webkit-transform: skewY(calc(90deg - 90deg));
-          transform: skewY(calc(90deg - 90deg));
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
   background: limegreen;
 }
 
 .pie .slice:nth-child(6) {
-  -webkit-transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 90deg + 90deg /2)) skewY(calc(-90deg + 45deg));
-          transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 90deg + 90deg /2)) skewY(calc(-90deg + 45deg));
+  -webkit-transform: rotate(calc(90deg)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(90deg)) skewY(calc(-90deg + 0deg));
 }
 
 .pie .slice:nth-child(6) .slice-contents {
-  -webkit-transform: skewY(calc(90deg - 45deg));
-          transform: skewY(calc(90deg - 45deg));
+  -webkit-transform: skewY(calc(90deg - 0deg));
+          transform: skewY(calc(90deg - 0deg));
   background: lightblue;
 }
 
 .pie .slice:nth-child(7) {
-  -webkit-transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 180deg + 90deg /2)) skewY(calc(-90deg + 0deg));
-          transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 180deg + 90deg /2)) skewY(calc(-90deg + 0deg));
+  -webkit-transform: rotate(calc(-90deg)) skewY(calc(-90deg + 90deg));
+          transform: rotate(calc(-90deg)) skewY(calc(-90deg + 90deg));
 }
 
 .pie .slice:nth-child(7) .slice-contents {
-  -webkit-transform: skewY(calc(90deg - 0deg));
-          transform: skewY(calc(90deg - 0deg));
+  -webkit-transform: skewY(calc(90deg - 90deg));
+          transform: skewY(calc(90deg - 90deg));
   background: lightgreen;
 }
 
 .pie .slice:nth-child(8) {
-  -webkit-transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 270deg + 90deg /2)) skewY(calc(-90deg + 0deg));
-          transform: rotate(calc(180deg + 0deg /2 + 0deg /2 + 0deg /2 + 270deg + 90deg /2)) skewY(calc(-90deg + 0deg));
+  -webkit-transform: rotate(calc(-90deg - 0deg)) skewY(calc(-90deg + 0deg));
+          transform: rotate(calc(-90deg - 0deg)) skewY(calc(-90deg + 0deg));
 }
 
 .pie .slice:nth-child(8) .slice-contents {
